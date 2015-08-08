@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 namespace MySqlTest
 {
     public enum TimeUnit
@@ -21,7 +22,23 @@ namespace MySqlTest
 
 
 
+    public static class Report
+    {
+        static StringBuilder stbuilder = new StringBuilder();
+        public static void Clear()
+        {
+            stbuilder.Length = 0;
+        }
+        public static void WriteLine(string info)
+        {
+            stbuilder.AppendLine(info);
+        }
+        public static string GetReportText()
+        {
+            return stbuilder.ToString();
+        }
 
+    }
     public class TestCase
     {
         MethodInfo testMethod;
@@ -89,6 +106,7 @@ namespace MySqlTest
             total = sw.ElapsedTicks;
             avg = total / n;
         }
+        
     }
 
 

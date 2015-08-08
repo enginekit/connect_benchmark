@@ -16,6 +16,7 @@ namespace MySqlTest
             long total;
             long avg;
             var connStr = GetMySqlConnString();
+
             Test(n, TimeUnit.Ticks, out total, out avg, () =>
             {
 
@@ -24,6 +25,8 @@ namespace MySqlTest
                 //connList.Add(conn);
                 conn.Close();
             });
+
+            Report.WriteLine("avg:" + avg);
         }
         [Test]
         public static void T_OpenNotClose()
@@ -40,6 +43,15 @@ namespace MySqlTest
                 conn.Open();
                 connList.Add(conn);
             });
+
+            Report.WriteLine("avg:" + avg);
+
+            //clear
+            foreach (var conn in connList)
+            {
+                conn.Close();
+            }
+            connList.Clear();
         }
 
         static string GetMySqlConnString()

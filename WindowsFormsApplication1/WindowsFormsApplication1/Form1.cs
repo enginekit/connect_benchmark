@@ -40,7 +40,13 @@ namespace WindowsFormsApplication1
             TestCase testCase = listboxTestCases.SelectedItem as TestCase;
             if (testCase != null)
             {
+
+                Report.Clear();
+                GC.Collect(); 
+
                 testCase.Run();
+
+                this.textBox1.Text = Report.GetReportText();
             }
         }
     }
