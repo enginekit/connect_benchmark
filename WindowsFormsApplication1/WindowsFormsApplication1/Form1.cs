@@ -14,6 +14,12 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
+        } 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            listboxTestCases.DoubleClick += ListboxTestCases_DoubleClick;
+            LoadTestCases();
         }
 
         void LoadTestCases()
@@ -28,12 +34,6 @@ namespace WindowsFormsApplication1
             {
                 listboxTestCases.Items.Add(testList[i]);
             }
-        }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-            listboxTestCases.DoubleClick += ListboxTestCases_DoubleClick;
-            LoadTestCases();
         }
         private void ListboxTestCases_DoubleClick(object sender, EventArgs e)
         {
