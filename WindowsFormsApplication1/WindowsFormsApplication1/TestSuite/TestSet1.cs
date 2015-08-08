@@ -25,6 +25,22 @@ namespace MySqlTest
                 conn.Close();
             });
         }
+        [Test]
+        public static void T_OpenNotClose()
+        {
+            int n = 100;
+            long total;
+            long avg;
+            var connStr = GetMySqlConnString();
+            List<MySqlConnection> connList = new List<MySqlConnection>();
+            Test(n, TimeUnit.Ticks, out total, out avg, () =>
+            {
+
+                var conn = new MySqlConnection(connStr);
+                conn.Open();
+                connList.Add(conn);
+            });
+        }
 
         static string GetMySqlConnString()
         {
